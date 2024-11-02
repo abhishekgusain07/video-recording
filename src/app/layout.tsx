@@ -4,8 +4,8 @@ import { ClerkProvider } from '@clerk/nextjs'
 import './globals.css'
 import { Toaster } from 'sonner'
 import ThemeProvider from '@/components/theme'
+import ClientToaster from '@/components/client-toaster'
 
-// Initialize font
 const dmSans = DM_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={dmSans.className}>
         <ClerkProvider>
-          <ThemeProvider
+          <ThemeProvider 
             attribute="class"
             defaultTheme="dark"
             enableSystem={true}
@@ -31,7 +31,7 @@ export default function RootLayout({
           >
             <div className="min-h-screen bg-background">
               {children}
-              <Toaster richColors />
+              <ClientToaster />
             </div>
           </ThemeProvider>
         </ClerkProvider>
