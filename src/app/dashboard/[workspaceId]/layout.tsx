@@ -2,14 +2,20 @@ import { getNotifications, onAuthenticateUser } from "@/actions/user";
 import { getAllUserVideos, getWorkspaceFolders, getWorkspaces, verifyAccessToWorkspace } from "@/actions/workspace";
 import { redirect } from "next/navigation";
 import {
+    dehydrate,
+    HydrationBoundary,
     QueryClient
 } from "@tanstack/react-query"
 import React from "react";
+import { client } from "@/lib/prisma";
+import Sidebar from "@/components/global/sidebar";
 
 type Props = {
     children: React.ReactNode
     params: {workspaceId: string}
 }
+
+
 const Layout = async({children, params:{workspaceId}}:Props) => {
     const auth = await onAuthenticateUser()
     if(!auth?.user?.workspace)return redirect('/auth/sign-in')
@@ -22,10 +28,9 @@ const Layout = async({children, params:{workspaceId}}:Props) => {
     }
     if(!hasAccess.data?.workspace)return null
 
-    const query = new QueryClient()
-
     //prefetching queries here so that it will be cached and whenver ahead we need them, we can just pull them out of the cache using use-query function, and we have them keys as written below.
 
+    const query = new QueryClient();
     await query.prefetchQuery({
         queryKey: ["workspace-folders"],
         queryFn: () => getWorkspaceFolders(workspaceId),
@@ -45,9 +50,12 @@ const Layout = async({children, params:{workspaceId}}:Props) => {
 
 
     return (
-        <>
-           {children} 
-        </>
+        <HydrationBoundary state={dehydrate(query)}>
+            <div className="flex h-screen w-screen">
+                <Sidebar activeWorkspaceId={workspaceId} />
+                {children}
+            </div>
+        </HydrationBoundary>
     )
 }
 

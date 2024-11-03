@@ -1,0 +1,21 @@
+What is hydrationboundary, when it is used?
+The HydrationBoundary component is used in React Query to manage the hydration process of queries when transitioning from server-rendered content to client-rendered content. It is particularly useful in applications that utilize Server Components and need to handle data fetching and synchronization between the server and client.
+
+Here are some key points on when and why to use HydrationBoundary:
+
+Concurrent Features and Transitions: HydrationBoundary supports concurrent features and transitions by ensuring that queries are properly hydrated. This means that the data fetched on the server is available on the client without needing to refetch, which can improve performance and user experience.
+
+Query Hydration: The HydrationBoundary component is responsible for hydrating queries, not mutations. This means it ensures that the data fetched during server-side rendering is available on the client side, allowing for a seamless transition and avoiding unnecessary data fetching.
+
+Avoiding Flash of Old Data: By using HydrationBoundary, you can prevent a flash of old data when navigating between pages. This is because it hydrates queries in an effect, ensuring that the freshest data is used without prematurely updating content before a page transition is fully committed.
+
+Technical Changes: The timing of when queries are hydrated has changed slightly with the introduction of HydrationBoundary. New queries are hydrated during the render phase, while existing queries in the cache are hydrated in an effect, as long as their data is fresher than the cached data.
+
+Overall, HydrationBoundary helps in managing the synchronization of data between server and client, ensuring that the client has access to the most up-to-date data without unnecessary refetching, thus improving the efficiency and performance of your application.
+========================================
+
+
+
+
+
+

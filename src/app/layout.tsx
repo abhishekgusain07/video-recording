@@ -5,6 +5,7 @@ import './globals.css'
 import { Toaster } from 'sonner'
 import ThemeProvider from '@/components/theme'
 import ClientToaster from '@/components/client-toaster'
+import ReactQueryProvider from '@/react-query'
 
 const dmSans = DM_Sans({ subsets: ['latin'] })
 
@@ -30,7 +31,9 @@ export default function RootLayout({
             storageKey="opal-theme"
           >
             <div className="min-h-screen bg-background">
-              {children}
+              <ReactQueryProvider>
+                {children}
+              </ReactQueryProvider>
               <ClientToaster />
             </div>
           </ThemeProvider>
