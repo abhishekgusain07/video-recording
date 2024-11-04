@@ -1,5 +1,5 @@
 import { getNotifications, onAuthenticateUser } from "@/actions/user";
-import { getAllUserVideos, getWorkspaceFolders, getWorkspaces, verifyAccessToWorkspace } from "@/actions/workspace";
+import { getAllUserVideos, getWorkspaceFolders, getWorkSpaces, verifyAccessToWorkspace } from "@/actions/workspace";
 import { redirect } from "next/navigation";
 import {
     dehydrate,
@@ -41,7 +41,7 @@ const Layout = async({children, params:{workspaceId}}:Props) => {
     })
     await query.prefetchQuery({
         queryKey: ["user-workspaces"],
-        queryFn: () => getWorkspaces(),
+        queryFn: () => getWorkSpaces(),
     })
     await query.prefetchQuery({
         queryKey: ["user-notifications"],
