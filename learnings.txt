@@ -14,8 +14,23 @@ Technical Changes: The timing of when queries are hydrated has changed slightly 
 Overall, HydrationBoundary helps in managing the synchronization of data between server and client, ensuring that the client has access to the most up-to-date data without unnecessary refetching, thus improving the efficiency and performance of your application.
 ========================================
 
+======= USE-CREATE-WORKSPACE=======
+the flow of use-create-workspace with useform hook whcih uses react-hook-form under the hood, with zod validation
 
 
+The flow works like this:
+
+When a component uses useCreateWorkspace, it gets:
+
+register: Function to register form fields with React Hook Form
+onFormSubmit: Submit handler that validates and processes the form
+errors: Any validation errors from Zod
+isPending: Loading state during mutation
 
 
+When the form is submitted:
 
+Data is validated against the Zod schema
+If valid, the mutation is called with the form data
+The mutation creates a workspace in the database
+The "user-workspaces" cache is invalidated to refresh the data

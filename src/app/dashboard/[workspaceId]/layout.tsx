@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { client } from "@/lib/prisma";
 import Sidebar from "@/components/global/sidebar";
+import GlobalHeader from "@/components/global/global-header";
 
 type Props = {
     children: React.ReactNode
@@ -53,7 +54,10 @@ const Layout = async({children, params:{workspaceId}}:Props) => {
         <HydrationBoundary state={dehydrate(query)}>
             <div className="flex h-screen w-screen">
                 <Sidebar activeWorkspaceId={workspaceId} />
-                {children}
+                <div className="w-full pt-28 p-6 overflow-y-scroll overflow-x-hidden">
+                    <GlobalHeader workspace={hasAccess.data.workspace} />
+                    <div className="mt-4">{children}</div>
+                </div>
             </div>
         </HydrationBoundary>
     )
