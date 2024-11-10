@@ -1,3 +1,12 @@
+Why are we using reacy-query ?
+usequery -> get data with queryKey
+useMutationState -> get the latest optimistic data that was sent into the mutate function when it was called using 
+
+useMutation -> A hook in React Query that allows you to perform mutations (create, update, delete operations) on data. It provides a way to manage the state of the mutation, including loading, error, and success states, and can be used to trigger side effects after the mutation is completed.
+
+==========================================
+
+
 What is hydrationboundary, when it is used?
 The HydrationBoundary component is used in React Query to manage the hydration process of queries when transitioning from server-rendered content to client-rendered content. It is particularly useful in applications that utilize Server Components and need to handle data fetching and synchronization between the server and client.
 
