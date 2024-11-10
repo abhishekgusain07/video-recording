@@ -34,3 +34,10 @@ Data is validated against the Zod schema
 If valid, the mutation is called with the form data
 The mutation creates a workspace in the database
 The "user-workspaces" cache is invalidated to refresh the data
+==========================================
+
+====== useMutationState =================
+1. using for optimistic ui updates here, generally it give access to all the mutation happening or happened in our application, so while loading folders or changing name, we can update the ui optimisitically, so that user sees the instant changes reflected in ui, and if the mutation fails in backend we can revert back to the original mutation data.
+
+https://tanstack.com/query/latest/docs/framework/react/reference/useMutationState
+

@@ -22,9 +22,9 @@ const CreateWorkspace = () => {
         }
     }
 
-    //NOTE: toggle these plan
-    if(plan?.subscription?.plan == 'PRO') return <></>
-    if(plan?.subscription?.plan === 'FREE')return (
+    //TODO: toggle these plan
+    if(plan?.subscription?.plan == 'FREE') return <></>
+    if(plan?.subscription?.plan === 'PRO')return (
         <Modal
         title="Create a Workspace"
         description=" Workspaces helps you collaborate with team members. You are assigned a default personal workspace where you can share videos in private with yourself."
