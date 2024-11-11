@@ -4,6 +4,8 @@ useMutationState -> get the latest optimistic data that was sent into the mutate
 
 useMutation -> A hook in React Query that allows you to perform mutations (create, update, delete operations) on data. It provides a way to manage the state of the mutation, including loading, error, and success states, and can be used to trigger side effects after the mutation is completed.
 
+
+preFetchQuery -> make an api request , render it and store it on server side.
 ==========================================
 
 

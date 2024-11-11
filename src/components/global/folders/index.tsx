@@ -18,12 +18,12 @@ export type FoldersProps = {
         _count: {
             videos: number
         }
-    }) & {
+    } & {
         id: string
         name: string
         createdAt: Date
         workspaceId: string | null
-    }
+    })[]
 }
 const Folders = ({ 
     workspaceId
@@ -36,8 +36,11 @@ const Folders = ({
 
     const {data:folders , status} = data as FoldersProps
 
+    //Todo: add redux later.
     if(isFetched && folders) {
         //dispatch folders in redux store.
+        
+         
     }
 
 
@@ -53,11 +56,24 @@ const Folders = ({
                     <ArrowRight color="#707070" />
                 </div>
             </div>
-            <section className={cn("flex items-center gap-4 overflow-x-auto w-full")}>
-                <Folder 
-                    name="New Folder"
-                    id="23"
-                />
+            <section className={cn(status !== 200 && "justify-center","flex items-center gap-4 overflow-x-auto w-full")}>
+               {
+                status !== 200 ? (
+                    <p className="text-neutral-300">No folders in workspace</p>
+                ) : (
+                    latestVariables && latestVariables.status !== 'pending') && (
+                        <Folder name={latestVariables.variables.name} id={latestVariables.variables.id} />     
+                )}
+                {
+                    folders.map((folder:any) => (
+                        <Folder 
+                            name={folder.name}
+                            count={folder._count.videos}
+                            id={folder.id}
+                            key={folder.id}
+
+                        />
+                ))}
             </section>
         </div>
     )
